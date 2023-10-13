@@ -3,6 +3,7 @@ from dataset.tokenizers.bert_tokenizer_with_dropout import BertTokenizerWithDrop
 
 
 def build_tokenizer(text_encoder: str, dropout=0):
+    text_encoder = 'bert-large-uncased'
     if ('bert-base-uncased' in text_encoder) or ('bert-large-uncased' in text_encoder):
         if dropout > 0:
             tokenizer = BertTokenizerWithDropout.from_pretrained(text_encoder, dropout=dropout)
