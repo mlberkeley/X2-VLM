@@ -12,12 +12,12 @@ import argparse
 from utils.hdfs_io import HADOOP_BIN, hexists, hmkdir, hcopy
 
 ############ Set it correctly for distributed training across nodes
-NNODES = int(os.getenv("ARNOLD_WORKER_NUM"))  # e.g. 1/2/3/4
-NPROC_PER_NODE = int(os.getenv("ARNOLD_WORKER_GPU"))  # e.g. 8
-
-MASTER_ADDR = os.getenv("METIS_WORKER_0_HOST")
-MASTER_PORT = int(os.getenv("METIS_WORKER_0_PORT"))
-NODE_RANK = int(os.getenv("ARNOLD_ID"))  # e.g. 0/1/2
+NNODES = int(os.getenv("ARNOLD_WORKER_NUM", "1")) # e.g. 1/2/3/4
+NPROC_PER_NODE = int(os.getenv("ARNOLD_WORKER_GPU", "8"))  # e.g. 8
+MASTER_ADDR = os.getenv("METIS_WORKER_0_HOST", "128.32.176.100")
+MASTER_PORT = int(os.getenv("METIS_WORKER_0_PORT", "12"))
+ss -s  in honeydew to find port ips
+NODE_RANK = int(os.getenv("ARNOLD_ID", "0"))  # e.g. 0/1/2
 ############
 
 print("NNODES, ", NNODES)
