@@ -167,6 +167,7 @@ def run_itr_msrvtt(args):
 
 def run_vqa(args):
     dist_launch = get_dist_launch(args)
+    print(dist_launch)
 
     assert os.path.exists("images/coco") and os.path.exists("images/visualgenome")
 

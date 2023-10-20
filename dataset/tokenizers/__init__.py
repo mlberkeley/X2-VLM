@@ -7,7 +7,8 @@ def build_tokenizer(text_encoder: str, dropout=0):
         if dropout > 0:
             tokenizer = BertTokenizerWithDropout.from_pretrained(text_encoder, dropout=dropout)
         else:
-            tokenizer = BertTokenizer.from_pretrained(text_encoder)
+            print(text_encoder)
+            tokenizer = BertTokenizer.from_pretrained(text_encoder[5:])
 
     elif ('xlm-roberta-base' in text_encoder) or ('xlm-roberta-large' in text_encoder):
         tokenizer = XLMRobertaTokenizer.from_pretrained(text_encoder)

@@ -1173,13 +1173,13 @@ class RobertaForMaskedLM(RobertaPreTrainedModel):
         return torch.gather(seq, 1, pos.unsqueeze(2).expand(-1, -1, seq.size(-1)))
 
     @add_start_docstrings_to_model_forward(ROBERTA_INPUTS_DOCSTRING.format("batch_size, sequence_length"))
-    @add_code_sample_docstrings(
-        processor_class=_TOKENIZER_FOR_DOC,
-        checkpoint=_CHECKPOINT_FOR_DOC,
-        output_type=MaskedLMOutput,
-        config_class=_CONFIG_FOR_DOC,
-        mask="<mask>",
-    )
+    # @add_code_sample_docstrings(
+    #     processor_class=_TOKENIZER_FOR_DOC,
+    #     checkpoint=_CHECKPOINT_FOR_DOC,
+    #     output_type=MaskedLMOutput,
+    #     config_class=_CONFIG_FOR_DOC,
+    #     mask="<mask>",
+    # )
     def forward(
         self,
         input_ids=None,

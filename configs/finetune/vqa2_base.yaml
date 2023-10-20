@@ -2,7 +2,8 @@ train_file: ['data/finetune/vqa_train.json',
              'data/finetune/vqa_val.json',
              'data/finetune/vg_qa.json']
              
-test_file: ['data/finetune/vqa_test.json']
+# test_file: ['data/finetune/vqa_test.json']
+test_file: ['data/finetune/vqa_test_pretty.json']
 answer_list: 'data/finetune/answer_list.json'
 
 vqa_root: 'images/coco/'
@@ -23,9 +24,9 @@ text_fusion_start_at: 12
 ## Training
 num_dec_layers: 6
 large_lr_for_dec: True
-batch_size_train: 8  # x16 a100
+batch_size_train: 1  # x16 a100
 accumulate_steps: 1
-batch_size_test: 32
+batch_size_test: 10
 max_tokens: 40
 k_test: 128
 

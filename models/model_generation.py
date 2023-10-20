@@ -474,7 +474,8 @@ class XVLMForVQA(XVLMBase):
                 if 'text_encoder.' in key:
                     if 'layer.' in key:
                         encoder_keys = key.split('.')
-                        layer_num = int(encoder_keys[4])
+                        print(key)
+                        layer_num = int(encoder_keys[3])
                         if layer_num < self.num_text_layers:
                             del state_dict[key]
                             continue

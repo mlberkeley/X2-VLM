@@ -23,28 +23,28 @@ class coco_karpathy_train(Dataset):
 
         self.transform = transform
         self.image_root = image_root
-        self.max_words = max_words      
+        self.max_words = max_words
         self.prompt = prompt
-        
-        self.img_ids = {}  
+
+        self.img_ids = {}
         n = 0
         for ann in self.annotation:
             img_id = ann['image_id']
             if img_id not in self.img_ids.keys():
                 self.img_ids[img_id] = n
-                n += 1    
-        
+                n += 1
+
     def __len__(self):
         return len(self.annotation)
-    
-    def __getitem__(self, index):    
-        
+
+    def __getitem__(self, index):
+
         ann = self.annotation[index]
-        
+
         image_path = os.path.join(self.image_root, ann['image'])
-        image = Image.open(image_path).convert('RGB')   
+        image = Image.open(image_path).convert('RGB')
         image = self.transform(image)
-        
+
         caption = self.prompt + pre_caption(ann['caption'], self.max_words)
 
         return image, caption, self.img_ids[ann['image_id']]
@@ -291,18 +291,18 @@ class coco_karpathy_caption_eval(Dataset):
         self.annotation = json.load(open(ann_rpath, 'r'))
         self.transform = transform
         self.image_root = image_root
-        
+
     def __len__(self):
         return len(self.annotation)
-    
-    def __getitem__(self, index):    
-        
+
+    def __getitem__(self, index):
+
         ann = self.annotation[index]
-        
+
         image_path = os.path.join(self.image_root, ann['image'])
-        image = Image.open(image_path).convert('RGB')   
-        image = self.transform(image)          
-        
+        image = Image.open(image_path).convert('RGB')
+        image = self.transform(image)
+
         img_id = ann['image'].split('/')[-1].strip('.jpg').split('_')[-1]
-        
+
         return image, int(img_id)
